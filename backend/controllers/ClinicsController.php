@@ -2,11 +2,13 @@
 
 namespace backend\controllers;
 
+use backend\images\models\Image;
 use common\models\Photos;
 use League\Flysystem\Filesystem;
 use Yii;
 use common\models\Clinics;
 use common\models\searchClinicsSearch;
+use yii\base\Security;
 use yii\helpers\FileHelper;
 use yii\helpers\Json;
 use yii\web\Controller;
@@ -62,12 +64,13 @@ class ClinicsController extends Controller
             ->from('photos')
             ->where(['clinic_id' => $id])
             ->all();
-
+        $stringHash = '';
 
 
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'photos' => $photos
+            'photos' => $photos,
+            'stringHash' => $stringHash
         ]);
     }
 
@@ -123,8 +126,26 @@ class ClinicsController extends Controller
 
     public function actionPhoto($id){
         $model = $this->findModel($id);
+        $security = new Security();
+        $string = Yii::$app->request->post('string');
+        $stringSize = '';
+        $string = Yii::$app->request->post('string');
+
+        $stringSize = '';
+        if (!is_null($string)) {
+            $stringSize = 'Photos was Resized';
+
+            $photos = $model->getImages();
+            foreach($photos as $photo){
+                $photo->getUrl($string);
+            }
+
+
+        }
         return $this->render('photo',[
-            'model' => $model
+            'model' => $model,
+            'stringSize' => $stringSize,
+
         ]);
     }
 
@@ -173,6 +194,7 @@ class ClinicsController extends Controller
 
             $uid = uniqid(time(), true);
             $fileName = $uid . '.' . $imageFile->extension;
+
             $filePath = $directory . $fileName;
 
             //$model->addPhotos($filePath, $model->id, $directory, $fileName);
@@ -186,6 +208,7 @@ class ClinicsController extends Controller
                 //FileHelper::removeDirectory($directory);
 
 
+                //$path = '/img/temp/' . Yii::$app->session->id . DIRECTORY_SEPARATOR . $fileName;
                 $path = '/img/temp/' . Yii::$app->session->id . DIRECTORY_SEPARATOR . $fileName;
                 return Json::encode([
                     'files' => [
@@ -206,6 +229,41 @@ class ClinicsController extends Controller
 
         FileHelper::removeDirectory($directory);
         return '';
+    }
+
+
+
+
+    public function actionResize($id)
+    {
+
+        $model = Clinics::findOne($id);
+        $photos = (new \yii\db\Query())
+            ->select(['url'])
+            ->from('photos')
+            ->where(['id' => $id])
+            ->limit(10)
+            ->all();
+
+        $string = Yii::$app->request->post('string');
+
+        $stringSize = '';
+        if (!is_null($string)) {
+            $stringSize = 'Photos was Resized';
+
+            $photos = $model->getImages();
+            foreach($photos as $photo){
+                $photo->getUrl($string);
+            }
+
+
+        }
+
+
+        return $this->render('resize', [
+            'model' => $model,
+            'stringSize' => $stringSize,
+        ]);
     }
 
 

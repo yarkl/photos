@@ -41,6 +41,11 @@ class GoogleImage implements ImageManagerInterface
         return \Yii::$container->get(GoogleStorageAdapter::class)->getUrl($path);
     }
 
+    public function putStream($fullPath){
+        return \Yii::$container->get(Filesystem::class)->putStream($fullPath, fopen($fullPath, 'r'));
+    }
+
+
 
 
 
