@@ -24,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
         <?= Html::a('Add Photos', ['photo', 'id' => $model->id], ['class' => 'btn btn-danger btn-lg']) ?>
+
     </p>
 
     <?= DetailView::widget([

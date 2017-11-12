@@ -81,10 +81,10 @@ class ImageBehave extends Behavior
         if($this->isLocalStorage()){
             copy($absolutePath, $newAbsolutePath);
         }else{
+
             copy($absolutePath, $newAbsolutePath);
-            $this->getStorage()->saveImage($newAbsolutePath);
-            //$path = Yii::getAlias('@webroot/images');
-            //yii\helpers\FileHelper::removeDirectory($path);
+            $this->getStorage()->putStream($newAbsolutePath);
+
 
         }
 

@@ -47,6 +47,10 @@ class ImageFactory extends Component
         return $this->getStorage()->has($path);
     }
 
+    public function putStream($path){
+        return $this->getStorage()->putStream($path);
+    }
+
 
 
 
