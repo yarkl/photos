@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\searchClinicsSearch */
+/* @var $searchModel common\models\DoctrorsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Clinics';
+$this->title = 'Doctors';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="clinics-index">
+<div class="doctors-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Clinics', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Doctors', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -26,7 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'text:ntext',
+            'avatar',
+            'clinic_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

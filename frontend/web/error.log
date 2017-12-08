@@ -1,0 +1,46 @@
+[Thu Dec 07 00:42:01.694182 2017] [php7:notice] [pid 15246] [client 127.0.0.1:59928] PHP Error:  Class 'frontend\\controllers\\Clinics' not found in /home/yar/photos/frontend/controllers/SiteController.php on line 75
+[Thu Dec 07 00:42:01.694382 2017] [php7:notice] [pid 15246] [client 127.0.0.1:59928] PHP Stack trace:
+[Thu Dec 07 00:42:01.694413 2017] [php7:notice] [pid 15246] [client 127.0.0.1:59928] PHP   1. {main}() /home/yar/photos/frontend/web/index.php:0
+[Thu Dec 07 00:42:01.694439 2017] [php7:notice] [pid 15246] [client 127.0.0.1:59928] PHP   2. yii\\web\\Application->run() /home/yar/photos/frontend/web/index.php:17
+[Thu Dec 07 00:42:01.694465 2017] [php7:notice] [pid 15246] [client 127.0.0.1:59928] PHP   3. yii\\web\\Application->handleRequest() /home/yar/photos/vendor/yiisoft/yii2/base/Application.php:386
+[Thu Dec 07 00:42:01.694490 2017] [php7:notice] [pid 15246] [client 127.0.0.1:59928] PHP   4. yii\\web\\Application->runAction() /home/yar/photos/vendor/yiisoft/yii2/web/Application.php:103
+[Thu Dec 07 00:42:01.694514 2017] [php7:notice] [pid 15246] [client 127.0.0.1:59928] PHP   5. frontend\\controllers\\SiteController->runAction() /home/yar/photos/vendor/yiisoft/yii2/base/Module.php:528
+[Thu Dec 07 00:42:01.694539 2017] [php7:notice] [pid 15246] [client 127.0.0.1:59928] PHP   6. yii\\base\\InlineAction->runWithParams() /home/yar/photos/vendor/yiisoft/yii2/base/Controller.php:157
+[Thu Dec 07 00:42:01.694563 2017] [php7:notice] [pid 15246] [client 127.0.0.1:59928] PHP   7. call_user_func_array:{/home/yar/photos/vendor/yiisoft/yii2/base/InlineAction.php:57}() /home/yar/photos/vendor/yiisoft/yii2/base/InlineAction.php:57
+[Thu Dec 07 00:42:01.694587 2017] [php7:notice] [pid 15246] [client 127.0.0.1:59928] PHP   8. frontend\\controllers\\SiteController->actionIndex() /home/yar/photos/vendor/yiisoft/yii2/base/InlineAction.php:57
+[Thu Dec 07 00:44:20.740084 2017] [php7:notice] [pid 15250] [client 127.0.0.1:32792] PHP Error:  Class 'frontend\\controllers\\Clinics' not found in /home/yar/photos/frontend/controllers/SiteController.php on line 80
+[Thu Dec 07 00:44:20.740236 2017] [php7:notice] [pid 15250] [client 127.0.0.1:32792] PHP Stack trace:
+[Thu Dec 07 00:44:20.740271 2017] [php7:notice] [pid 15250] [client 127.0.0.1:32792] PHP   1. {main}() /home/yar/photos/frontend/web/index.php:0
+[Thu Dec 07 00:44:20.740301 2017] [php7:notice] [pid 15250] [client 127.0.0.1:32792] PHP   2. yii\\web\\Application->run() /home/yar/photos/frontend/web/index.php:17
+[Thu Dec 07 00:44:20.740329 2017] [php7:notice] [pid 15250] [client 127.0.0.1:32792] PHP   3. yii\\web\\Application->handleRequest() /home/yar/photos/vendor/yiisoft/yii2/base/Application.php:386
+[Thu Dec 07 00:44:20.740357 2017] [php7:notice] [pid 15250] [client 127.0.0.1:32792] PHP   4. yii\\web\\Application->runAction() /home/yar/photos/vendor/yiisoft/yii2/web/Application.php:103
+[Thu Dec 07 00:44:20.740384 2017] [php7:notice] [pid 15250] [client 127.0.0.1:32792] PHP   5. frontend\\controllers\\SiteController->runAction() /home/yar/photos/vendor/yiisoft/yii2/base/Module.php:528
+[Thu Dec 07 00:44:20.740411 2017] [php7:notice] [pid 15250] [client 127.0.0.1:32792] PHP   6. yii\\base\\InlineAction->runWithParams() /home/yar/photos/vendor/yiisoft/yii2/base/Controller.php:157
+[Thu Dec 07 00:44:20.740438 2017] [php7:notice] [pid 15250] [client 127.0.0.1:32792] PHP   7. call_user_func_array:{/home/yar/photos/vendor/yiisoft/yii2/base/InlineAction.php:57}() /home/yar/photos/vendor/yiisoft/yii2/base/InlineAction.php:57
+[Thu Dec 07 00:44:20.740465 2017] [php7:notice] [pid 15250] [client 127.0.0.1:32792] PHP   8. frontend\\controllers\\SiteController->actionCreate() /home/yar/photos/vendor/yiisoft/yii2/base/InlineAction.php:57
+[Thu Dec 07 00:46:25.018060 2017] [php7:notice] [pid 15246] [client 127.0.0.1:33894] PHP ParseError:  syntax error, unexpected ';', expecting ']' in /home/yar/photos/frontend/config/main.php on line 60
+[Thu Dec 07 00:46:25.018371 2017] [php7:notice] [pid 15246] [client 127.0.0.1:33894] PHP Stack trace:
+[Thu Dec 07 00:46:25.018406 2017] [php7:notice] [pid 15246] [client 127.0.0.1:33894] PHP   1. {main}() /home/yar/photos/frontend/web/index.php:0
+[Thu Dec 07 00:46:25.018720 2017] [php7:notice] [pid 15246] [client 127.0.0.1:33894] PHP Parse error:  syntax error, unexpected ';', expecting ']' in /home/yar/photos/frontend/config/main.php on line 60
+[Thu Dec 07 00:46:27.756568 2017] [php7:notice] [pid 15287] [client 127.0.0.1:33896] PHP ParseError:  syntax error, unexpected ';', expecting ']' in /home/yar/photos/frontend/config/main.php on line 60
+[Thu Dec 07 00:46:27.756723 2017] [php7:notice] [pid 15287] [client 127.0.0.1:33896] PHP Stack trace:
+[Thu Dec 07 00:46:27.756753 2017] [php7:notice] [pid 15287] [client 127.0.0.1:33896] PHP   1. {main}() /home/yar/photos/frontend/web/index.php:0
+[Thu Dec 07 00:46:27.756998 2017] [php7:notice] [pid 15287] [client 127.0.0.1:33896] PHP Parse error:  syntax error, unexpected ';', expecting ']' in /home/yar/photos/frontend/config/main.php on line 60
+[Thu Dec 07 00:46:30.272543 2017] [php7:notice] [pid 15286] [client 127.0.0.1:33898] PHP ParseError:  syntax error, unexpected ';', expecting ']' in /home/yar/photos/frontend/config/main.php on line 60
+[Thu Dec 07 00:46:30.272687 2017] [php7:notice] [pid 15286] [client 127.0.0.1:33898] PHP Stack trace:
+[Thu Dec 07 00:46:30.272715 2017] [php7:notice] [pid 15286] [client 127.0.0.1:33898] PHP   1. {main}() /home/yar/photos/frontend/web/index.php:0
+[Thu Dec 07 00:46:30.272971 2017] [php7:notice] [pid 15286] [client 127.0.0.1:33898] PHP Parse error:  syntax error, unexpected ';', expecting ']' in /home/yar/photos/frontend/config/main.php on line 60
+[Thu Dec 07 00:46:31.853947 2017] [php7:notice] [pid 15250] [client 127.0.0.1:33900] PHP ParseError:  syntax error, unexpected ';', expecting ']' in /home/yar/photos/frontend/config/main.php on line 60, referer: http://photo.dev/
+[Thu Dec 07 00:46:31.854078 2017] [php7:notice] [pid 15250] [client 127.0.0.1:33900] PHP Stack trace:, referer: http://photo.dev/
+[Thu Dec 07 00:46:31.854106 2017] [php7:notice] [pid 15250] [client 127.0.0.1:33900] PHP   1. {main}() /home/yar/photos/frontend/web/index.php:0, referer: http://photo.dev/
+[Thu Dec 07 00:46:31.854350 2017] [php7:notice] [pid 15250] [client 127.0.0.1:33900] PHP Parse error:  syntax error, unexpected ';', expecting ']' in /home/yar/photos/frontend/config/main.php on line 60, referer: http://photo.dev/
+[Thu Dec 07 00:49:03.031694 2017] [php7:notice] [pid 15287] [client 127.0.0.1:35212] PHP Error:  Class 'frontend\\controllers\\UploadedFile' not found in /home/yar/photos/frontend/controllers/SiteController.php on line 85, referer: http://photo.dev/site/create
+[Thu Dec 07 00:49:03.031897 2017] [php7:notice] [pid 15287] [client 127.0.0.1:35212] PHP Stack trace:, referer: http://photo.dev/site/create
+[Thu Dec 07 00:49:03.031953 2017] [php7:notice] [pid 15287] [client 127.0.0.1:35212] PHP   1. {main}() /home/yar/photos/frontend/web/index.php:0, referer: http://photo.dev/site/create
+[Thu Dec 07 00:49:03.032002 2017] [php7:notice] [pid 15287] [client 127.0.0.1:35212] PHP   2. yii\\web\\Application->run() /home/yar/photos/frontend/web/index.php:17, referer: http://photo.dev/site/create
+[Thu Dec 07 00:49:03.032048 2017] [php7:notice] [pid 15287] [client 127.0.0.1:35212] PHP   3. yii\\web\\Application->handleRequest() /home/yar/photos/vendor/yiisoft/yii2/base/Application.php:386, referer: http://photo.dev/site/create
+[Thu Dec 07 00:49:03.032094 2017] [php7:notice] [pid 15287] [client 127.0.0.1:35212] PHP   4. yii\\web\\Application->runAction() /home/yar/photos/vendor/yiisoft/yii2/web/Application.php:103, referer: http://photo.dev/site/create
+[Thu Dec 07 00:49:03.032140 2017] [php7:notice] [pid 15287] [client 127.0.0.1:35212] PHP   5. frontend\\controllers\\SiteController->runAction() /home/yar/photos/vendor/yiisoft/yii2/base/Module.php:528, referer: http://photo.dev/site/create
+[Thu Dec 07 00:49:03.032185 2017] [php7:notice] [pid 15287] [client 127.0.0.1:35212] PHP   6. yii\\base\\InlineAction->runWithParams() /home/yar/photos/vendor/yiisoft/yii2/base/Controller.php:157, referer: http://photo.dev/site/create
+[Thu Dec 07 00:49:03.032231 2017] [php7:notice] [pid 15287] [client 127.0.0.1:35212] PHP   7. call_user_func_array:{/home/yar/photos/vendor/yiisoft/yii2/base/InlineAction.php:57}() /home/yar/photos/vendor/yiisoft/yii2/base/InlineAction.php:57, referer: http://photo.dev/site/create
+[Thu Dec 07 00:49:03.032337 2017] [php7:notice] [pid 15287] [client 127.0.0.1:35212] PHP   8. frontend\\controllers\\SiteController->actionCreate() /home/yar/photos/vendor/yiisoft/yii2/base/InlineAction.php:57, referer: http://photo.dev/site/create

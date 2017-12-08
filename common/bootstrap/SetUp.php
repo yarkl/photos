@@ -19,7 +19,7 @@ class SetUp implements \yii\base\BootstrapInterface
       $path = \Yii::getAlias('@webroot');
       $storageClient = new StorageClient([
           'projectId' => 'meeting-1505992494072',
-          'keyFilePath' => $path.'/meeting-7c77b82098b3.json'
+          'keyFilePath' => $path.'/meeting-24d66f8479bd.json'
       ]);
       $bucket = $storageClient->bucket('meeting-1505992494072');
       $adapter = new GoogleStorageAdapter($storageClient , $bucket);

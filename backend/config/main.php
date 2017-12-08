@@ -17,7 +17,7 @@ return [
         ],
     'modules' => [
         'yii2images' => [
-        'class' => 'rico\yii2images\Module',
+        'class' => 'backend\images\Module',
         //be sure, that permissions ok
         //if you cant avoid permission errors you have to create "images" folder in web root manually and set 777 permissions
         'imagesStorePath' => 'images/store', //path to origin images
@@ -68,8 +68,8 @@ return [
             'class' => \CTala\Storage::className(),
             'region' => 'us-east-2',
             'credentials' => [ // Aws\Credentials\CredentialsInterface|array|callable
-                'key' => 'AKIAJWD73OVAAA4TS2PQ',
-                'secret' => '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',
+                'key' => '',
+                'secret' => '',
             ],
             'bucket' => 'bookimed',
             //'cdnHostname' => 'https://s3.console.aws.amazon.com/s3/buckets/bookimed/?region=us-east-2&tab=overview',
@@ -80,8 +80,8 @@ return [
 
         'awss3Fs' => [
             'class' => 'creocoder\flysystem\AwsS3Filesystem',
-            'key' => 'AKIAJWD73OVAAA4TS2PQ',
-            'secret' => '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',
+            'key' => '',
+            'secret' => '',
             'bucket' => 'bookimed',
             'region' => 'us-east-2',
             // 'version' => 'latest',

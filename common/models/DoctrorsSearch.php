@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Clinics;
+use common\models\Doctors;
 
 /**
- * searchClinicsSearch represents the model behind the search form about `common\models\Clinics`.
+ * DoctrorsSearch represents the model behind the search form about `common\models\Doctors`.
  */
-class searchClinicsSearch extends Clinics
+class DoctrorsSearch extends Doctors
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class searchClinicsSearch extends Clinics
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name', 'text'], 'safe'],
+            [['id', 'clinic_id'], 'integer'],
+            [['name', 'avatar'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class searchClinicsSearch extends Clinics
      */
     public function search($params)
     {
-        $query = Clinics::find();
+        $query = Doctors::find();
 
         // add conditions that should always apply here
 
@@ -60,10 +60,11 @@ class searchClinicsSearch extends Clinics
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'clinic_id' => $this->clinic_id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'text', $this->text]);
+            ->andFilterWhere(['like', 'avatar', $this->avatar]);
 
         return $dataProvider;
     }

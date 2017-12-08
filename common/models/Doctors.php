@@ -3,29 +3,22 @@
 namespace common\models;
 
 use Yii;
+use sadovojav\cutter\behaviors\CutterBehavior;
 
 /**
- * This is the model class for table "photos".
+ * This is the model class for table "doctor".
  *
  * @property integer $id
+ * @property string $name
+ * @property string $avatar
  * @property integer $clinic_id
- * @property string $url
- * @property string $filePath
  *
  * @property Clinics $clinic
  */
-class Photos extends \yii\db\ActiveRecord
+class Doctors extends \yii\db\ActiveRecord
 {
 
-    public static function create($clinic_id , $url , $filePath){
-        $photos = new static();
-        $photos->clinic_id = $clinic_id;
-        $photos->url = $url;
-        $photos->filePath = $filePath;
-        if(!$photos->save()){
-            throw new \DomainException('Photos was not saved');
-        }
-    }
+    public $image;
 
 
     /**
@@ -33,7 +26,7 @@ class Photos extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'photos';
+        return 'doctor';
     }
 
     /**
@@ -42,9 +35,10 @@ class Photos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['clinic_id', 'url', 'filePath'], 'required'],
+            [['name'], 'required'],
             [['clinic_id'], 'integer'],
-            [['url', 'filePath'], 'string', 'max' => 255],
+            ['image', 'file', 'extensions' => 'jpg, jpeg, png', 'mimeTypes' => 'image/jpeg, image/png'],
+            [['name', 'avatar'], 'string', 'max' => 255],
             [['clinic_id'], 'exist', 'skipOnError' => true, 'targetClass' => Clinics::className(), 'targetAttribute' => ['clinic_id' => 'id']],
         ];
     }
@@ -56,9 +50,9 @@ class Photos extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'name' => 'Name',
+            'avatar' => 'Avatar',
             'clinic_id' => 'Clinic ID',
-            'url' => 'Url',
-            'filePath' => 'File Path',
         ];
     }
 
@@ -68,5 +62,19 @@ class Photos extends \yii\db\ActiveRecord
     public function getClinic()
     {
         return $this->hasOne(Clinics::className(), ['id' => 'clinic_id']);
+    }
+
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => CutterBehavior::className(),
+                'attributes' => 'image',
+                //'attributes' => ['image'],
+                'baseDir' => '/uploads/',
+                'basePath' => '@webroot',
+            ],
+
+        ];
     }
 }

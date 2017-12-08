@@ -5,11 +5,12 @@ namespace backend\controllers;
 use backend\images\models\Image;
 use common\models\Photos;
 use League\Flysystem\Filesystem;
+use Superbalist\Flysystem\GoogleStorage\GoogleStorageAdapter;
 use Yii;
 use common\models\Clinics;
 use common\models\searchClinicsSearch;
-use yii\base\Security;
 use yii\helpers\FileHelper;
+
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -64,13 +65,13 @@ class ClinicsController extends Controller
             ->from('photos')
             ->where(['clinic_id' => $id])
             ->all();
-        $stringHash = '';
+
 
 
         return $this->render('view', [
             'model' => $this->findModel($id),
             'photos' => $photos,
-            'stringHash' => $stringHash
+
         ]);
     }
 
@@ -84,6 +85,7 @@ class ClinicsController extends Controller
         $model = new Clinics();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -103,6 +105,9 @@ class ClinicsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -126,25 +131,18 @@ class ClinicsController extends Controller
 
     public function actionPhoto($id){
         $model = $this->findModel($id);
-        $security = new Security();
         $string = Yii::$app->request->post('string');
-        $stringSize = '';
-        $string = Yii::$app->request->post('string');
-
-        $stringSize = '';
+        $stringSuccess = '';
         if (!is_null($string)) {
-            $stringSize = 'Photos was Resized';
-
+            $stringSuccess = 'Photos was Resized';
             $photos = $model->getImages();
             foreach($photos as $photo){
                 $photo->getUrl($string);
             }
-
-
         }
         return $this->render('photo',[
             'model' => $model,
-            'stringSize' => $stringSize,
+            'stringSuccess' => $stringSuccess,
 
         ]);
     }
@@ -179,37 +177,29 @@ class ClinicsController extends Controller
     {
 
         $model = Clinics::findOne($id);
-
-
         $imageFile = UploadedFile::getInstance($model, 'image');
 
+        $directory = Yii::getAlias('@webroot/img/temp') .
+        DIRECTORY_SEPARATOR . Yii::$app->session->id . DIRECTORY_SEPARATOR;
 
-        $directory = Yii::getAlias('@webroot/img/temp') . DIRECTORY_SEPARATOR . Yii::$app->session->id . DIRECTORY_SEPARATOR;
         if (!is_dir($directory)) {
 
-            FileHelper::createDirectory($directory);
+           FileHelper::createDirectory($directory);
         }
-
         if ($imageFile) {
 
             $uid = uniqid(time(), true);
             $fileName = $uid . '.' . $imageFile->extension;
-
             $filePath = $directory . $fileName;
 
-            //$model->addPhotos($filePath, $model->id, $directory, $fileName);
-
-
-
-            if ($imageFile->saveAs($filePath)) {
+            if ($imageFile->saveAs($filePath) && $filePath) {
 
                 $model->attachImage($filePath);
                 //$this->saveImgToGae($filePath);
                 //FileHelper::removeDirectory($directory);
 
-
-                //$path = '/img/temp/' . Yii::$app->session->id . DIRECTORY_SEPARATOR . $fileName;
                 $path = '/img/temp/' . Yii::$app->session->id . DIRECTORY_SEPARATOR . $fileName;
+
                 return Json::encode([
                     'files' => [
                         [
@@ -227,45 +217,9 @@ class ClinicsController extends Controller
 
         }
 
-        FileHelper::removeDirectory($directory);
+
         return '';
     }
-
-
-
-
-    public function actionResize($id)
-    {
-
-        $model = Clinics::findOne($id);
-        $photos = (new \yii\db\Query())
-            ->select(['url'])
-            ->from('photos')
-            ->where(['id' => $id])
-            ->limit(10)
-            ->all();
-
-        $string = Yii::$app->request->post('string');
-
-        $stringSize = '';
-        if (!is_null($string)) {
-            $stringSize = 'Photos was Resized';
-
-            $photos = $model->getImages();
-            foreach($photos as $photo){
-                $photo->getUrl($string);
-            }
-
-
-        }
-
-
-        return $this->render('resize', [
-            'model' => $model,
-            'stringSize' => $stringSize,
-        ]);
-    }
-
 
 
 

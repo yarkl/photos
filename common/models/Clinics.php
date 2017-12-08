@@ -15,6 +15,8 @@ use Yii;
  */
 class Clinics extends \yii\db\ActiveRecord
 {
+   public $image;
+
     /**
      * @inheritdoc
      */

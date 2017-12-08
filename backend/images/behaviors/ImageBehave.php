@@ -84,8 +84,6 @@ class ImageBehave extends Behavior
 
             copy($absolutePath, $newAbsolutePath);
             $this->getStorage()->putStream($newAbsolutePath);
-
-
         }
 
         if (!file_exists($newAbsolutePath)) {

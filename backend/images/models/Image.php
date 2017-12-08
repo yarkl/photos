@@ -51,9 +51,14 @@ class Image extends \yii\db\ActiveRecord
 
         if(preg_match('/'.preg_quote($this->modelName, '/').'/', $dirToRemove)){
             BaseFileHelper::removeDirectory($dirToRemove);
-
         }
-
+        return true;
+    }
+    public function clearTemp(){
+        $dirToRemove = Yii::getAlias('@webroot/img');
+        BaseFileHelper::removeDirectory($dirToRemove);
+        $runTime = Yii::getAlias('@webroot/images');
+        FileHelper::removeDirectory($runTime);
         return true;
     }
 
@@ -64,7 +69,7 @@ class Image extends \yii\db\ActiveRecord
 
     public function getUrl($size = false){
 
-        if($this->isLocalStorage()){
+        /*if($this->isLocalStorage()){
             $urlSize = ($size) ? '_'.$size : '';
             $url = Url::toRoute([
                 '/'.$this->getModule()->id.'/images/image-by-item-and-alias',
@@ -73,7 +78,7 @@ class Image extends \yii\db\ActiveRecord
             ]);
 
             return $url;
-        }else{
+        }else{*/
             $urlSize = ($size) ? ''.$size : '';
 
             $newUrl = \Yii::getAlias($this->getPath($urlSize));
@@ -91,10 +96,11 @@ class Image extends \yii\db\ActiveRecord
                 Photos::create($this->itemId, $url, $this->getPath($urlSize));
             }
 
+            $this->clearCache();
 
             return $url;
 
-        }
+        //}
 
     }
 
@@ -109,7 +115,7 @@ class Image extends \yii\db\ActiveRecord
         $filePath = $base.DIRECTORY_SEPARATOR.
             $sub.DIRECTORY_SEPARATOR.$this->urlAlias.$urlSize.'.'.pathinfo($origin, PATHINFO_EXTENSION);;
 
-            if($this->isLocalStorage()){
+            /*if($this->isLocalStorage()){
                 if(!file_exists($filePath)){
                     $this->createVersion($origin, $size);
 
@@ -118,7 +124,7 @@ class Image extends \yii\db\ActiveRecord
                     }
             }
                 return $filePath;
-        }else{
+        }else{*/
 
                 if(!$this->getStorage()->has($filePath)){
                     $this->createVersion($newOrigin, $size);
@@ -129,7 +135,7 @@ class Image extends \yii\db\ActiveRecord
                 }
                 return $filePath;
 
-         }
+         //}
 
 
     }
@@ -234,23 +240,18 @@ class Image extends \yii\db\ActiveRecord
                         throw new \Exception('Something wrong with this->module->parseSize($sizeString)');
                     }
                 }
-                if($this->isLocalStorage()){
-                    $image->writeImage($pathToSave);
-                }else{
-                    if(!$this->getStorage()->saveImage($pathToSave)){
-                        throw new \DomainException('Photos to cloud storage was not saved');
-                    }
-                }
 
-                if($this->isLocalStorage()){
+                /*if($this->isLocalStorage()){
                     $image->writeImage($pathToSave);
-                }else{
+                    $this->clearTemp();
+                }else{*/
                     $image->writeImage($pathToSave);
                     if(!$this->getStorage()->saveImage($pathToSave)){
                         throw new \DomainException('Photos was not saved');
                     }
-                    FileHelper::removeDirectory($cachePath.'/'.$subDirPath);
-                }
+
+                    $this->clearTemp();
+                //}
 
 
 
@@ -313,15 +314,18 @@ class Image extends \yii\db\ActiveRecord
 
                 }
 
-                if($this->isLocalStorage()){
+                /*if($this->isLocalStorage()){
                     $image->save($pathToSave, $this->getModule()->imageCompressionQuality );
-                }else{
+                    $this->clearTemp();
+                }else{*/
                     $image->save($pathToSave, $this->getModule()->imageCompressionQuality );
                     if(!$this->getStorage()->saveImage($pathToSave)){
                         throw new \DomainException('Photos to Gae was not saved');
                     }
-                    FileHelper::removeDirectory($cachePath.'/'.$subDirPath);
-                }
+                   
+                    $this->clearTemp();
+
+                //}
 
 
 

@@ -11,10 +11,11 @@ use dosamigos\fileupload\FileUploadUI;
     <?= \yii\helpers\Html::input('text', 'string', Yii::$app->request->post('string'), ['class' => 'form-control']) ?>
     <?= \yii\helpers\Html::submitButton('Resize', ['class' => 'btn btn-lg btn-primary', 'name' => 'hash-button']) ?>
     <?= \yii\helpers\Html::endForm() ?>
-    <h3><?php echo $stringSize ?></h3>
+    <h3><?php echo $stringSuccess ?></h3>
     <?php \yii\widgets\Pjax::end(); ?>
 </p>
-<?= FileUploadUI::widget([
+<?=
+FileUploadUI::widget([
     'model' => $model,
     'attribute' => 'image',
     'url' => ['clinics/uploadd', 'id' => $model->id],
@@ -36,5 +37,7 @@ use dosamigos\fileupload\FileUploadUI;
                                 console.log(data);
                             }',
     ],
-]); ?>
+]);
+
+?>
 

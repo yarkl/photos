@@ -12,6 +12,10 @@
         "irc": "irc://irc.freenode.net/yii",
         "source": "https://github.com/yiisoft/yii2"
     },
+  "asset-installer-paths": {
+    "npm-asset-library": "vendor/npm",
+    "bower-asset-library": "vendor"
+  },
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
@@ -22,7 +26,15 @@
         "2amigos/yii2-file-upload-widget": "~1.0",
         "costa-rico/yii2-images": "dev-master",
         "creocoder/yii2-flysystem": "^0.9.0",
-        "ctala/yii2-aws-s3": "^0.6.0"
+        "ctala/yii2-aws-s3": "dev-master",
+        "maxmirazh33/yii2-uploadable-cropable-image": "*",
+        "alvinojutsu/yii2-image-cropper": "dev-master",
+        "mackrais/yii2-crop-image-section": "dev-master",
+        "navatech/yii2-cropper": "dev-master",
+        "newerton/yii2-jcrop": "dev-master",
+        "sadovojav/yii2-image-cutter": "^1.0",
+        "raoul2000/yii2-jcrop-widget": "*"
+
 
     },
     "require-dev": {
@@ -33,8 +45,15 @@
         "codeception/verify": "~0.3.1"
     },
     "config": {
-        "process-timeout": 1800
+        "process-timeout": 1800,
+        "fxp-asset":{
+          "installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+          }
+        }
     },
+
     "repositories": [
         {
             "type": "composer",

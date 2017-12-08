@@ -12,7 +12,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-
+use common\models\Clinics;
+use yii\web\UploadedFile;
 /**
  * Site controller
  */
@@ -73,6 +74,26 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+      public function actionCreate()
+    {
+        $model = new Clinics();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+           
+            $imageFile = UploadedFile::getInstanceByName('image');
+
+            
+            
+           var_dump($_FILES);
+            die();
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
     }
 
     /**
